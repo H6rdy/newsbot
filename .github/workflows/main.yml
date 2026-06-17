@@ -23,4 +23,4 @@ jobs:
         pip install feedparser requests g4f
 
     - name: 뉴스 봇 실행
-      run: python newsbot_sector_split.py
+      run: python newsbot.py
