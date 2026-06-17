@@ -14,23 +14,26 @@ def get_sector_news():
     economy_url = "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=ko&gl=KR&ceid=KR:ko"
     economy_feed = feedparser.parse(economy_url)
     economy_list = []
-    for entry in economy_feed.entries[:7]: # 최신 경제 뉴스 7개
+    for entry in economy_feed.entries[:7]:
         economy_list.append(f"- {entry.title} (링크: {entry.link})")
         
     # 2. 시사/국제 섹터 (구글 뉴스 World)
     current_url = "https://news.google.com/rss/headlines/section/topic/WORLD?hl=ko&gl=KR&ceid=KR:ko"
     current_feed = feedparser.parse(current_url)
     current_list = []
-    for entry in current_feed.entries[:7]: # 최신 시사 뉴스 7개
+    for entry in current_feed.entries[:7]:
         current_list.append(f"- {entry.title} (링크: {entry.link})")
         
-    # 두 섹터의 데이터를 구조화된 텍스트로 합침
+    # [수정 포인트] 에러를 피하기 위해 중괄호 밖에서 줄바꿈(\n) 처리를 미리 해둡니다.
+    economy_text = "\n".join(economy_list)
+    current_text = "\n".join(current_list)
+    
     formatted_raw_text = f"""
     [수집된 경제 뉴스 원본]
-    {"\n".join(economy_list)}
+    {economy_text}
     
     [수집된 시사/일반 뉴스 원본]
-    {"\n".join(current_list)}
+    {current_text}
     """
     return formatted_raw_text
 
