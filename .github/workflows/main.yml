@@ -3,7 +3,7 @@ name: Morning News Bot
 on:
   schedule:
     # UTC 기준 21:00 = 한국 시간 오전 6:00
-    - cron: '0 21 * * *'
+    - cron: '43 20 * * *'
   workflow_dispatch: # 수동으로도 실행해볼 수 있게 하는 버튼
 
 jobs:
